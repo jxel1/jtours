@@ -8,13 +8,14 @@
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
     "debug": "cross-env NODE_ENV=development ndb server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url /js",
-    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "author": "Joel bitri",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",

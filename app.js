@@ -7,6 +7,7 @@ const mongoSanatize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const errHandler = require('./controllers/errorController');
@@ -73,6 +74,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 ///error handling middleware ////
+
+app.use(compression());
 
 //////////////// ROUTES////////////////////////
 app.use('/', viewRouter);
