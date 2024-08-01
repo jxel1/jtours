@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
@@ -16,7 +16,7 @@ mongoose
     console.error('Connection error', err);
   });
 
-const server = http.createServer(app);
+const server = https.createServer(app);
 
 server.listen(port, () => {
   console.log(`App listening on port ${port}`);
