@@ -2,6 +2,10 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
 dotenv.config({ path: './config.env' });
+const app = require('./app');
+const { server } = require('typescript');
+
+const port = process.env.PORT || 3000;
 
 mongoose
   .connect(process.env.DATABASE)
@@ -11,11 +15,6 @@ mongoose
   .catch((err) => {
     console.error('Connection error', err);
   });
-
-const app = require('./app');
-const { server } = require('typescript');
-
-const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
