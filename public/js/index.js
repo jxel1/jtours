@@ -74,12 +74,13 @@ if (userPasswordForm)
   });
 
 if (resetPasswordForm) {
-  resetPasswordForm.addEventListener('submit', async (e) => {
+  document.querySelector('.form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value;
 
     document.getElementById('hid').hidden = false;
-
+    console.log(email, '1');
     await forgotPassword(email);
+    console.log(email, '2');
   });
 }

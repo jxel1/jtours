@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const pug = require('pug');
 const { convert } = require('html-to-text');
+require('dotenv').config();
 
 module.exports = class Email {
   constructor(user, url) {
@@ -8,29 +9,21 @@ module.exports = class Email {
     this.firstName = user.name.split(' ')[0];
     this.url = url;
     this.from = `Joel Bitri <${process.env.EMAIL_FROM}>`;
+    console.log(this.to, this.firstName, this.url, this.from);
   }
 
   newTransport() {
-    if (process.env.NODE_ENV === 'production') {
-      return nodemailer.createTransport({
-        host: 'smtp-relay.brevo.com',
-        port: 587,
-
-        auth: {
-          user: '798e4e001@smtp-brevo.com',
-          pass: 'k0whtrc2dbsOjYQg',
-        },
-      });
-    }
-
-    // return nodemailer.createTransport({
-    //   host: process.env.EMAIL_HOST,
-    //   port: process.env.EMAIL_PORT,
-    //   auth: {
-    //     user: process.env.EMAIL_USERNAME,
-    //     pass: process.env.EMAIL_PASSWORD,
-    //   },
-    // });
+    //if (process.env.NODE_ENV === 'production') {
+    return nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT,
+      auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+      secure: false,
+    });
+    //}
   }
 
   // Send the actual email
