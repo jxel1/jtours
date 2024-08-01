@@ -3,7 +3,7 @@ import { login, logout, signup, forgotPassword } from './login';
 import { displayMap } from './mapbox';
 import { updateData } from './updateData';
 
-const mapBox = document.getElementById('map');
+//const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form-login');
 const logoutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
@@ -24,10 +24,10 @@ if (signupForm) {
   });
 }
 
-if (mapBox) {
-  const locations = JSON.parse(document.getElementById('map').dataset.locations);
-  displayMap(locations);
-}
+// if (mapBox) {
+//   const locations = JSON.parse(document.getElementById('map').dataset.locations);
+//   displayMap(locations);
+// }
 
 if (loginForm) {
   document.querySelector('.form').addEventListener('submit', (e) => {
