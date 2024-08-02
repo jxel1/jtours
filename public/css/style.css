@@ -917,6 +917,7 @@ body {
 .username:hover {
   color: #55c57a;
   transition: all 0.3s;
+  cursor: pointer;
 
 }
 
