@@ -8,10 +8,7 @@ const app = require('./app');
 const port = process.env.PORT || 3000;
 
 mongoose
-  .connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.DATABASE)
   .then(() => {
     console.log('Connected to MongoDB!');
   })
