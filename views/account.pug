@@ -1,11 +1,11 @@
 extends base
 
 mixin navItem(link, text, icon, active)
-  li(class=`${active ? 'side-nav--active' : ''}`)
+  li(class=`nav-item ${active ? 'side-nav--active' : ''}`)
     a(href=`${link}`)
       svg
         use(xlink:href=`img/icons.svg#icon-${icon}`)
-      | #{text}
+      span.noMobile #{text}
 
 block content
   main.main
@@ -65,3 +65,22 @@ block content
               input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
             .form__group.right
               button.btn.btn--small.btn--green.btn--save-password Save password
+
+              .line &nbsp;
+
+
+      nav.user-view__menuPhone
+            ul.side-navPhone
+              +navItem('#', 'Settings', 'settings', true)
+              +navItem('/my-tours', 'My bookings', 'briefcase')
+              +navItem('#', 'My reviews', 'star')
+              +navItem('#', 'Billing', 'credit-card')
+
+            - if (user.role === 'admin')
+              .admin-navPhone
+                h5.admin-nav__headingPhone Admin
+                ul.side-navPhone
+                  +navItem('#', 'Manage tours', 'map')
+                  +navItem('#', 'Manage users', 'users')
+                  +navItem('#', 'Manage reviews', 'star')
+                  +navItem('#', 'Manage bookings', 'briefcase')

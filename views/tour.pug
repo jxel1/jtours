@@ -9,7 +9,6 @@ block append head
   script(src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin="")
-  script(defer, src='/js/mapbox.js')
 
 mixin overviewBox(label, text, icon)
   .overview-box__detail
@@ -24,18 +23,18 @@ block content
       .header__hero-overlay &nbsp;
       img.header__hero-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
 
-    .heading-box
-      h1.heading-primary
-        span= `${tour.name} tour`
-      .heading-box__group
-        .heading-box__detail
-          svg.heading-box__icon
-            use(xlink:href='/img/icons.svg#icon-clock')
-          span.heading-box__text= `${tour.duration} days`
-        .heading-box__detail
-          svg.heading-box__icon
-            use(xlink:href='/img/icons.svg#icon-map-pin')
-          span.heading-box__text= tour.startLocation.description
+      .heading-box
+        h1.heading-primary
+          span= `${tour.name} tour`
+        .heading-box__group
+          .heading-box__detail
+            svg.heading-box__icon
+              use(xlink:href='/img/icons.svg#icon-clock')
+            span.heading-box__text= `${tour.duration} days`
+          .heading-box__detail
+            svg.heading-box__icon
+              use(xlink:href='/img/icons.svg#icon-map-pin')
+            span.heading-box__text= tour.startLocation.description
 
   section.section-description
     .overview-box
@@ -49,18 +48,6 @@ block content
           +overviewBox('Participants', `${tour.maxGroupSize} people`, 'user')
           +overviewBox('Rating', `${tour.ratingsAverage} / 5`, 'star')
 
-        .overview-box__group
-          h2.heading-secondary.ma-bt-lg Your tour guides
-
-          each guide in tour.guides
-            .overview-box__detail
-              img.overview-box__img(src=`/img/users/${guide.photo}`, alt=`${guide.name}`)
-
-              - if (guide.role === 'lead-guide')
-                span.overview-box__label Lead guide
-              - if (guide.role === 'guide')
-                span.overview-box__label Tour guide
-              span.overview-box__text= guide.name
 
     .description-box
       h2.heading-secondary.ma-bt-lg= `About ${tour.name} tour`
